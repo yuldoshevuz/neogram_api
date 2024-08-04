@@ -1,8 +1,8 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { getCookie, igApi } from 'insta-fetcher';
-import { LoginData } from 'insta-fetcher/dist/types';
-import { GetOriginalLinkDto, GetInstaStoriesDto } from 'src/dto/get.original.link.dto';
+import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { getCookie, igApi } from "insta-fetcher";
+import { LoginData } from "insta-fetcher/dist/types";
+import { GetOriginalLinkDto, GetInstaStoriesDto } from "src/dto/get.original.link.dto";
 
 @Injectable()
 export class InstagramService {
@@ -19,7 +19,7 @@ export class InstagramService {
             return await getCookie(this.INSTA_USERNAME, this.INSTA_PASSWORD, false);
         } catch (error) {
             console.log(error)
-            throw new InternalServerErrorException('Failed to retrieve Instagram session ID.');
+            throw new InternalServerErrorException("Failed to retrieve Instagram session ID.");
         }
     }
 
@@ -28,7 +28,7 @@ export class InstagramService {
         try {
             return await ig.fetchPost(url);
         } catch (error) {
-            throw new NotFoundException('The media not found or invalid URL.');
+            throw new NotFoundException("The media not found or invalid URL.");
         }
     }
 
